@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOEIC Daily Vocab</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; color: #333; line-height: 1.6; padding: 20px; }
+        .container { max-width: 700px; margin: 0 auto; }
+        h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
+        
+        .word-card { 
+            background: #fff; border-radius: 12px; padding: 25px; margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 6px solid #007bff;
+            transition: all 0.3s ease;
+        }
+        .word-card:hover { transform: translateY(-5px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+        
+        .header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .english { font-size: 26px; font-weight: 700; color: #007bff; cursor: pointer; }
+        .english:hover { text-decoration: underline; }
+        .chinese { font-size: 18px; font-weight: 500; color: #555; }
+        
+        .example-section { background: #f1f3f5; border-radius: 8px; padding: 15px; font-size: 15px; }
+        .example-item { margin-bottom: 10px; border-bottom: 1px dashed #ccc; padding-bottom: 10px; }
+        .example-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .ex-en { color: #444; font-weight: 500; display: block; cursor: pointer; }
+        .ex-en:hover { color: #0056b3; }
+        .ex-zh { color: #777; display: block; margin-top: 3px; }
+        
+        .play-btn { background: #007bff; color: white; border: none; border-radius: 50%; width: 35px; height: 35px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .play-btn:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>TOEIC 每日單字</h1>
+
+    <div id="word-list">
+        </div>
+</div>
+
+<script>
+    // --- 每天更新這裡的內容即可 ---
+    const vocabData = [
+        {
+            en: "Requirement",
+            zh: "需求、必要條件",
+            ex1_en: "The candidate must meet all the requirements for this position.",
+            ex1_zh: "該應試者必須符合這個職位的所有要求。",
+            ex2_en: "Safety requirements are strictly enforced in the laboratory.",
+            ex2_zh: "實驗室嚴格執行安全規定。"
+        },
+        {
+            en: "Implement",
+            zh: "實施、執行",
+            ex1_en: "The company will implement a new security policy next month.",
+            ex1_zh: "公司將於下個月實施新的安全政策。",
+            ex2_en: "It is difficult to implement these changes without more funding.",
+            ex2_zh: "沒有更多資金，很難執行這些變革。"
+        }
+        // 你可以依照這個格式繼續增加 10 個
+    ];
+
+    const listContainer = document.getElementById('word-list');
+
+    vocabData.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'word-card';
+        card.innerHTML = `
+            <div class="header-row">
+                <div>
+                    <span class="english" onclick="speak('${item.en}')">${item.en}</span>
+                    <div class="chinese">${item.zh}</div>
+                </div>
+                <button class="play-btn" onclick="speak('${item.en}')">🔊</button>
+            </div>
+            <div class="example-section">
+                <div class="example-item">
+                    <span class="ex-en" onclick="speak('${item.ex1_en.replace(/'/g, "\\'")}')">1. ${item.ex1_en}</span>
+                    <span class="ex-zh">${item.ex1_zh}</span>
+                </div>
+                <div class="example-item">
+                    <span class="ex-en" onclick="speak('${item.ex2_en.replace(/'/g, "\\'")}')">2. ${item.ex2_en}</span>
+                    <span class="ex-zh">${item.ex2_zh}</span>
+                </div>
+            </div>
+        `;
+        listContainer.appendChild(card);
+    });
+
+    function speak(text) {
+        const synth = window.speechSynthesis;
+        const utterThis = new SpeechSynthesisUtterance(text);
+        utterThis.lang = 'en-US';
+        utterThis.rate = 0.9;
+        synth.speak(utterThis);
+    }
+</script>
+
+</body>
+</html>
