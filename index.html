@@ -29,67 +29,66 @@
 </div>
 
 <script>
-    // 💡 已經把你提供的 10 個單字內容完整修復引號與逗號
     const vocabData = [
         {
-            en: 'address',
-            zh: '處理',
-            ex1_en: 'The committee must address the safety concerns immediately.',
-            ex1_zh: '委員會應立即針對安全問題採取行動。'
+            en: `address`,
+            zh: `處理`,
+            ex1_en: `The committee must address the safety concerns immediately.`,
+            ex1_zh: `委員會應立即針對安全問題採取行動。`
         },
         {
-            en: 'afford',
-            zh: '負擔得起',
-            ex1_en: 'Most employees can afford to eat at the local cafeteria.',
-            ex1_zh: '大多數員工都負擔得起在當地餐廳用餐的費用。'
+            en: `afford`,
+            zh: `負擔得起`,
+            ex1_en: `Most employees can afford to eat at the local cafeteria.`,
+            ex1_zh: `大多數員工都負擔得起在當地餐廳用餐的費用。`
         },
         {
-            en: 'amenities',
-            zh: '便利設施',
-            ex1_en: 'The hotel provides many modern amenities for its guests.',
-            ex1_zh: '這家旅館提供很多現代化的設備供客人使用。'
+            en: `amenities`,
+            zh: `便利設施`,
+            ex1_en: `The hotel provides many modern amenities for its guests.`,
+            ex1_zh: `這家旅館提供很多現代化的設備供客人使用。`
         },
         {
-            en: 'antibiotic',
-            zh: '抗生素',
-            ex1_en: 'The doctor will prescribe an antibiotic for your infection.',
-            ex1_zh: '醫師將為您的感染病灶開立抗生素藥物。'
+            en: `antibiotic`,
+            zh: `抗生素`,
+            ex1_en: `The doctor will prescribe an antibiotic for your infection.`,
+            ex1_zh: `醫師將為您的感染病灶開立抗生素藥物。`
         },
         {
-            en: 'application',
-            zh: '申請',
-            ex1_en: 'Please submit your job application to the manager today.',
-            ex1_zh: '請務必於今日內將您的應徵申請書呈交給部門經理。'
+            en: `application`,
+            zh: `申請`,
+            ex1_en: `Please submit your job application to the manager today.`,
+            ex1_zh: `請務必於今日內將您的應徵申請書呈交給部門經理。`
         },
         {
-            en: 'appreciate',
-            zh: '感激',
-            ex1_en: 'We appreciate your hard work on this difficult project.',
-            ex1_zh: '我們很感謝你在這個艱難專案中所付出的辛勞。'
+            en: `appreciate`,
+            zh: `感激`,
+            ex1_en: `We appreciate your hard work on this difficult project.`,
+            ex1_zh: `我們很感謝你在這個艱難專案中所付出的辛勞。`
         },
         {
-            en: 'attend',
-            zh: '參加',
-            ex1_en: 'All staff members must attend the safety seminar tomorrow.',
-            ex1_zh: '全體員工明天都必須參加安全研討會。'
+            en: `attend`,
+            zh: `參加`,
+            ex1_en: `All staff members must attend the safety seminar tomorrow.`,
+            ex1_zh: `全體員工明天都必須參加安全研討會。`
         },
         {
-            en: 'boardroom',
-            zh: '董事會會議室',
-            ex1_en: 'The executive team is meeting in the boardroom now.',
-            ex1_zh: '執行長團隊目前正於董事會會議室進行會議。'
+            en: `boardroom`,
+            zh: `董事會會議室`,
+            ex1_en: `The executive team is meeting in the boardroom now.`,
+            ex1_zh: `執行長團隊目前正於董事會會議室進行會議。`
         },
         {
-            en: 'cafeteria',
-            zh: '自助餐廳',
-            ex1_en: 'The office cafeteria offers a variety of healthy meals.',
-            ex1_zh: '公司的食堂有很多健康的菜色可以選。'
+            en: `cafeteria`,
+            zh: `自助餐廳`,
+            ex1_en: `The office cafeteria offers a variety of healthy meals.`,
+            ex1_zh: `公司的食堂有很多健康的菜色可以選。`
         },
         {
-            en: 'catering',
-            zh: '外燴',
-            ex1_en: 'The company will hire a catering service for the party.',
-            ex1_zh: '公司將針對此次聚會委託專業餐飲承包商提供服務。'
+            en: `catering`,
+            zh: `外燴`,
+            ex1_en: `The company will hire a catering service for the party.`,
+            ex1_zh: `公司將針對此次聚會委託專業餐飲承包商提供服務。`
         }
     ];
 
@@ -98,7 +97,8 @@
     vocabData.forEach(item => {
         const card = document.createElement('div');
         card.className = 'word-card';
-        card.innerHTML = '
+        // 💡 關鍵修正：這裡必須使用反引號 ` 才能換行
+        card.innerHTML = `
             <div class="header-row">
                 <div>
                     <span class="english">${item.en}</span>
@@ -110,9 +110,8 @@
                 <span class="ex-en">1. ${item.ex1_en}</span>
                 <span class="ex-zh">${item.ex1_zh}</span>
             </div>
-        ';
+        `;
 
-        // 綁定發音事件
         card.querySelector('.english').onclick = () => speak(item.en);
         card.querySelector('.play-btn').onclick = () => speak(item.en);
         card.querySelector('.example-section').onclick = () => speak(item.ex1_en);
